@@ -30,6 +30,9 @@ class ARCamView
         this.scene.add( this.camera );
         //this.scene.add( this.object );
 
+        this.clock = new THREE.Clock();
+        this.mixer = null;
+
         this.objectURL = 'https://raw.githubusercontent.com/AndrewAndreevich/AlvaAR/refs/heads/main/duck.glb';
 
         this.loadGLTFModel(this.objectURL, x, y, z, scale);
@@ -42,9 +45,14 @@ class ARCamView
 
         const render = () =>
         {
-            requestAnimationFrame( render.bind( this ) );
+            requestAnimationFrame(render.bind( this ));
 
-            this.renderer.render( this.scene, this.camera );
+            // Update mixer for animations
+            if (this.mixer) {
+                mixer.update(this.clock.getDelta());
+            }
+        
+            renderer.render(this.scene, this.camera);
         }
 
         render();
@@ -88,9 +96,22 @@ class ARCamView
                 });
 
                 // Add the model to the scene
+
+                
                 this.scene.add(model);
                 this.root = model;
                 this.root.visible = false;
+
+
+                // Set up the Animation Mixer
+                this.mixer = new AnimationMixer(model);
+
+                // Get and play the animation(s)
+                gltf.animations.forEach((clip) => {
+                this.mixer.clipAction(clip).play();
+                });
+
+
             },
             undefined,
             (error) => {
