@@ -3,7 +3,6 @@ import { OrbitControls } from 'https://threejsfundamentals.org/threejs/resources
 import { AlvaARConnectorTHREE } from './alva_ar_three.js'
 import { GLTFLoader } from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js'
 
-
 class ARCamView
 {
     constructor( container, width, height, x = 0, y = 0, z = -10, scale = 0.25)
@@ -104,7 +103,7 @@ class ARCamView
 
 
                 // Set up the Animation Mixer
-                this.mixer = new AnimationMixer(model);
+                this.mixer = new THREE.AnimationMixer(model);
 
                 // Get and play the animation(s)
                 gltf.animations.forEach((clip) => {
