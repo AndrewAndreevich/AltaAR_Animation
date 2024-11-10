@@ -196,6 +196,29 @@
             document.body.appendChild( Stats.el );
             document.body.addEventListener( "click", () => alva.reset(), false );
 
+
+            function drawStar(ctx, x, y, radius, points, innerRadius, rotation = 0) {
+                ctx.beginPath();
+                ctx.moveTo(
+                    x + radius * Math.cos(rotation),
+                    y - radius * Math.sin(rotation)
+                );
+                        
+                for (let i = 0; i < points * 2; i++) {
+                    const angle = (i * Math.PI) / points + rotation;
+                    const r = i % 2 === 0 ? radius : innerRadius;
+                    ctx.lineTo(x + r * Math.cos(angle), y - r * Math.sin(angle));
+                }
+            
+                ctx.closePath();
+                ctx.fillStyle = 'yellow';
+                ctx.fill();
+                ctx.strokeStyle = 'black';
+                ctx.stroke();
+}
+
+
+
             onFrame( () =>
             {
                 Stats.next();
@@ -226,8 +249,11 @@
 
                         for( const p of dots )
                         {
-                            ctx.fillStyle = 'white';
-                            ctx.fillRect( p.x, p.y, 2, 2 );
+                            //ctx.fillStyle = 'white';
+                            //ctx.fillRect( p.x, p.y, 2, 2 );
+                            
+
+                            drawStar(ctx,p.x, p.y,6,4,2)
                         }
                     }
                 }
