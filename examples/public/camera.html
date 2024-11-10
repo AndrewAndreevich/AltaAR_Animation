@@ -203,7 +203,7 @@
                     x + radius * Math.cos(rotation),
                     y - radius * Math.sin(rotation)
                 );
-                        
+
                 for (let i = 0; i < points * 2; i++) {
                     const angle = (i * Math.PI) / points + rotation;
                     const r = i % 2 === 0 ? radius : innerRadius;
@@ -211,9 +211,9 @@
                 }
             
                 ctx.closePath();
-                ctx.fillStyle = 'yellow';
+                ctx.fillStyle = 'violet';
                 ctx.fill();
-                ctx.strokeStyle = 'black';
+                ctx.strokeStyle = 'white';
                 ctx.stroke();
 }
 
