@@ -26,7 +26,15 @@ class ARCamView
         this.scene.add( new THREE.AmbientLight( 0x808080 ) );
         this.scene.add( new THREE.HemisphereLight( 0x404040, 0xf0f0f0, 1 ) );
         this.scene.add( this.camera );
-        this.scene.add( this.object );
+        //this.scene.add( this.object );
+
+        this.objectURL = 'https://raw.githubusercontent.com/AndrewAndreevich/AlvaAR/refs/heads/main/duck.glb';
+
+        this.loadGLTFModel(objectURL, x, y, z, scale);
+
+
+
+
 
         container.appendChild( this.renderer.domElement );
 
@@ -50,6 +58,35 @@ class ARCamView
     lostCamera()
     {
         this.object.visible = false;
+    }
+
+    loadGLTFModel(modelPath, x, y, z, scale) {
+        const loader = new GLTFLoader();
+        loader.load(
+            modelPath,
+            (gltf) => {
+                const model = gltf.scene; // Loaded model's scene
+                model.position.set(x, y, z);
+                model.scale.set(scale, scale, scale);
+
+                // Optional: Traverse the model to manipulate individual meshes
+                model.traverse((child) => {
+                    if (child.isMesh) {
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                    }
+                });
+
+                // Add the model to the scene
+                this.scene.add(model);
+                this.root = model;
+                this.root.visible = false;
+            },
+            undefined,
+            (error) => {
+                console.error('An error occurred while loading the GLTF model:', error);
+            }
+        );
     }
 }
 
