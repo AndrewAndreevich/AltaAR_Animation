@@ -52,7 +52,7 @@ class ARCamView
                 mixer.update(this.clock.getDelta());
             }
         
-            renderer.render(this.scene, this.camera);
+            this.renderer.render(this.scene, this.camera);
         }
 
         render();
