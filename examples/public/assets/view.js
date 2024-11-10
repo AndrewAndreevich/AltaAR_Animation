@@ -6,7 +6,7 @@ import { GLTFLoader } from 'https://threejsfundamentals.org/threejs/resources/th
 
 class ARCamView
 {
-    constructor( container, width, height, x = 0, y = 0, z = -10, scale = 1.0)
+    constructor( container, width, height, x = 0, y = 0, z = -10, scale = 0.25)
     {
         this.applyPose = AlvaARConnectorTHREE.Initialize( THREE );
 
@@ -49,7 +49,7 @@ class ARCamView
 
             // Update mixer for animations
             if (this.mixer) {
-                mixer.update(this.clock.getDelta());
+                this.mixer.update(this.clock.getDelta());
             }
         
             this.renderer.render(this.scene, this.camera);
