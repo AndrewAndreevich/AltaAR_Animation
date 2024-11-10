@@ -30,7 +30,7 @@ class ARCamView
 
         this.objectURL = 'https://raw.githubusercontent.com/AndrewAndreevich/AlvaAR/refs/heads/main/duck.glb';
 
-        this.loadGLTFModel(objectURL, x, y, z, scale);
+        this.loadGLTFModel(this.objectURL, x, y, z, scale);
 
 
 
