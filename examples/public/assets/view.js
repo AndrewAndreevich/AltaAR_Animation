@@ -33,7 +33,7 @@ class ARCamView
         this.clock = new THREE.Clock();
         this.mixer = null;
 
-        this.objectURL = 'https://raw.githubusercontent.com/AndrewAndreevich/AlvaAR/refs/heads/main/duck.glb';
+        this.objectURL = 'https://raw.githubusercontent.com/AndrewAndreevich/AltaAR_Animation/refs/heads/master/examples/public/assets/ton_coin_animation.glb';
 
         this.loadGLTFModel(this.objectURL, x, y, z, scale);
 
